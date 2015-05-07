@@ -27,4 +27,5 @@ let test t name =
 let main argv =
     printfn "\nF# Tests:"
     test helloWorldTest "HelloWorld()"
+    printfn "Done!"
     0

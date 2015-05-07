@@ -9,6 +9,7 @@ class Program
 	static void Main() {
 		Console.WriteLine("\nC# Tests:");
 		Test(HelloWorldTest, "HelloWorld()");
+		Console.WriteLine("Done!");
 	}
 	
 	static void Test(Action tester, string name) {
