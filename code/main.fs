@@ -15,6 +15,12 @@ module Assert =
 let helloWorldTest() = 
     Assert.areEqual (HelloWorld()) "Hello World!"
 
+let capitalizeEveryNthWord() =
+    let sentence = "Lorem ipsum dolor sit amet";
+    Assert.areEqual "Lorem Ipsum dolor Sit amet" (capitalizeEveryNthWord sentence 0 2)
+    Assert.areEqual "Lorem ipsum Dolor Sit Amet" (capitalizeEveryNthWord sentence 2 1)
+    Assert.areEqual "Lorem ipsum Dolor sit Amet" (capitalizeEveryNthWord sentence 0 2)
+
 let test t name = 
     try
         t()
@@ -27,5 +33,6 @@ let test t name =
 let main argv =
     printfn "\nF# Tests:"
     test helloWorldTest "HelloWorld()"
+    test capitalizeEveryNthWord "capitalizeEveryNthWord(...)"
     printfn "Done!"
     0

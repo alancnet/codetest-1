@@ -6,6 +6,14 @@ function Program() {
 	function helloWorldTest() {
 		assert.areEqual("Hello World!", code.helloWorld());
 	}
+
+	function capitalizeEveryNthWordTest() {
+		var sentence = "Lorem ipsum dolor sit amet";
+		assert.areEqual("Lorem Ipsum dolor Sit amet", code.capitalizeEveryNthWord(sentence, 0, 2));
+		assert.areEqual("Lorem ipsum Dolor Sit Amet", code.capitalizeEveryNthWord(sentence, 2, 1));
+		assert.areEqual("Lorem ipsum Dolor sit Amet", code.capitalizeEveryNthWord(sentence, 0, 2));
+	}
+
 	
 	function test(t, name) {
 		try {
@@ -19,6 +27,7 @@ function Program() {
 	function main() {
 		console.log("\nJavaScript Tests:");
 		test(helloWorldTest, "HelloWorld()");
+		test(capitalizeEveryNthWordTest, "capitalizeEveryNthWord(...)");
 		console.log("Done!");
 	}
 	

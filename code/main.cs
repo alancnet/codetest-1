@@ -5,10 +5,17 @@ class Program
 	static void HelloWorldTest() {
 		Assert.AreEqual("Hello World!", TestClass.HelloWorld());
 	}
+	static void CapitalizeEveryNthWordTest() {
+		var sentence = "Lorem ipsum dolor sit amet";
+		Assert.AreEqual("Lorem Ipsum dolor Sit amet", TestClass.CapitalizeEveryNthWord(sentence, 0, 2));
+		Assert.AreEqual("Lorem ipsum Dolor Sit Amet", TestClass.CapitalizeEveryNthWord(sentence, 2, 1));
+		Assert.AreEqual("Lorem ipsum Dolor sit Amet", TestClass.CapitalizeEveryNthWord(sentence, 0, 2));
+	}
 		
 	static void Main() {
 		Console.WriteLine("\nC# Tests:");
 		Test(HelloWorldTest, "HelloWorld()");
+		Test(CapitalizeEveryNthWordTest, "CapitalizeEveryNthWord(...)");
 		Console.WriteLine("Done!");
 	}
 	
