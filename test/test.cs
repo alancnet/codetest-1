@@ -35,6 +35,12 @@ namespace test
                 results.AddRange(Exec("..\\bin", "%SCALAEXE%", "scala.jar"));
             return results;
         }
+        static IEnumerable<Result> JavaScript()
+        {
+            List<Result> results = new List<Result>();
+            results.AddRange(Exec("..", "%JSEXE%", "code\\main.js"));
+            return results;
+        }
 
         static AutoResetEvent needsBuild = new AutoResetEvent(true);
         static void Main(string[] args)
@@ -50,7 +56,8 @@ namespace test
                 var results = CollectMany(new Func<IEnumerable<Result>>[] {
                     CSharp,
                     FSharp,
-                    Scala
+                    Scala,
+                    JavaScript
                 });
 
                 PrintResults(results.Result);
@@ -142,10 +149,20 @@ namespace test
                     Arguments = args
                 };
                 Process proc = Process.Start(psi);
+                bool done = false;
                 proc.OutputDataReceived += (o, e) =>
                 {
                     if (e.Data != null)
                     {
+                        if (e.Data == "Done!") {
+                            done = true;
+                            if (!proc.HasExited) {
+                                try {
+                                    proc.Kill();
+                                } catch {}
+                            }
+                            return;
+                        }
                         string[] words = e.Data.Split(new char[] { ':' }, 2);
                         if (words.Length == 2 && words[0] == "PASS")
                         {
@@ -198,8 +215,8 @@ namespace test
                         Type = ResultType.Fail,
                         Text = String.Format("{0} failed to execute within 5000ms.", filename)
                     });
-                } else {
-                    Thread.Sleep(100);
+                } else if (!done) {
+                    Thread.Sleep(1000);
                 }
             }
             return results;
