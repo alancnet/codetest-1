@@ -3,7 +3,7 @@ using System;
 class Program
 {
 	static void HelloWorldTest() {
-		Assert.AreEqual(TestClass.HelloWorld(), "Hello World!");
+		Assert.AreEqual("Hello World!", TestClass.HelloWorld());
 	}
 		
 	static void Main() {
