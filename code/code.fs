@@ -1,4 +1,4 @@
 ﻿module TestModule
 
-let HelloWorld() = 
+let helloWorld() = 
     failwith "Not Implemented"

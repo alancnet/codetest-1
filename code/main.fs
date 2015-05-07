@@ -13,7 +13,7 @@ module Assert =
 
 
 let helloWorldTest() = 
-    Assert.areEqual (HelloWorld()) "Hello World!"
+    Assert.areEqual (helloWorld()) "Hello World!"
 
 let test t name = 
     try
@@ -26,6 +26,6 @@ let test t name =
 [<EntryPoint>]
 let main argv =
     printfn "\nF# Tests:"
-    test helloWorldTest "HelloWorld()"
+    test helloWorldTest "helloWorld()"
     printfn "Done!"
     0
