@@ -39,6 +39,7 @@ if "%FSC%"=="" (
 )
 
 echo JAVAEXE=%JAVAEXE%
+echo SCALAEXE=%SCALAEXE%
 echo JAVAC=%JAVAC%
 echo SCALAC=%SCALAC%
 echo CSC=%CSC%

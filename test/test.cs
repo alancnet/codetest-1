@@ -31,7 +31,8 @@ namespace test
         {
             List<Result> results = new List<Result>();
             results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code\\code.scala code\\main.scala"));
-            results.AddRange(Exec("..\\bin", "%SCALAEXE%", "scala.jar"));
+            if (File.Exists("../bin/scala.jar"))
+                results.AddRange(Exec("..\\bin", "%SCALAEXE%", "scala.jar"));
             return results;
         }
 
