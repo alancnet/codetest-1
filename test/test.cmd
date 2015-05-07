@@ -7,6 +7,11 @@ if "%JAVAEXE%"=="" (
 	for /f "delims=" %%p in ('where java.exe') do set JAVAEXE=%%p
 )
 
+:: Find Scala Executer
+if "%SCALAEXE%"=="" (
+	for /f "delims=" %%p in ('where scala.bat') do set SCALAEXE=%%p
+)
+
 :: Find Java Compiler
 if "%JAVAC%"=="" (
 	for /f "delims=" %%p in ('dir /s /b "%p32%\java\javac.exe"') do set JAVAC=%%p

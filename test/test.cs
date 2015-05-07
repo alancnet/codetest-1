@@ -27,6 +27,13 @@ namespace test
             return results;
         }
 
+        static IEnumerable<Result> Scala()
+        {
+            List<Result> results = new List<Result>();
+            results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code\\code.scala code\\main.scala"));
+            results.AddRange(Exec("..\\bin", "%SCALAEXE%", "scala.jar"));
+            return results;
+        }
 
         static AutoResetEvent needsBuild = new AutoResetEvent(true);
         static void Main(string[] args)
@@ -41,7 +48,8 @@ namespace test
                 ClearBuild();
                 var results = CollectMany(new Func<IEnumerable<Result>>[] {
                     CSharp,
-                    FSharp
+                    FSharp,
+                    Scala
                 });
 
                 PrintResults(results.Result);
@@ -179,7 +187,7 @@ namespace test
                 proc.BeginOutputReadLine();
                 proc.BeginErrorReadLine();
 
-                proc.WaitForExit(2000);
+                proc.WaitForExit(5000);
 
                 if (!proc.HasExited)
                 {
@@ -187,7 +195,7 @@ namespace test
                     results.Add(new Result
                     {
                         Type = ResultType.Fail,
-                        Text = String.Format("{0} failed to execute within 2000ms.", filename)
+                        Text = String.Format("{0} failed to execute within 5000ms.", filename)
                     });
                 } else {
                     Thread.Sleep(100);
