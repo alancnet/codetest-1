@@ -19,6 +19,13 @@ namespace test
             return results;
         }
 
+        static IEnumerable<Result> FSharp()
+        {
+            List<Result> results = new List<Result>();
+            results.AddRange(Exec("..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code\\code.fs code\\main.fs"));
+            results.AddRange(Exec("..\\bin", "..\\bin\\fsharp.exe", ""));
+            return results;
+        }
 
 
         static AutoResetEvent needsBuild = new AutoResetEvent(true);
@@ -33,7 +40,8 @@ namespace test
                 Console.ResetColor();
                 ClearBuild();
                 var results = CollectMany(new Func<IEnumerable<Result>>[] {
-                    CSharp   
+                    CSharp,
+                    FSharp
                 });
 
                 PrintResults(results.Result);
@@ -127,7 +135,7 @@ namespace test
                 Process proc = Process.Start(psi);
                 proc.OutputDataReceived += (o, e) =>
                 {
-                    if (!string.IsNullOrWhiteSpace(e.Data))
+                    if (e.Data != null)
                     {
                         string[] words = e.Data.Split(new char[] { ':' }, 2);
                         if (words.Length == 2 && words[0] == "PASS")
@@ -158,7 +166,7 @@ namespace test
                 };
                 proc.ErrorDataReceived += (o, e) =>
                 {
-                    if (!String.IsNullOrWhiteSpace(e.Data))
+                    if (e.Data != null)
                     {
                         results.Add(new Result
                         {

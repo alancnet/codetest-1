@@ -7,7 +7,7 @@ class Program
 	}
 		
 	static void Main() {
-		Console.WriteLine("C# Tests:");
+		Console.WriteLine("\nC# Tests:");
 		Test(HelloWorldTest, "HelloWorld()");
 	}
 	
@@ -35,7 +35,7 @@ class Program
 			throw new Exception(String.Format("Expected '{0}', got '{1}'.", expected, actual));
 		}
 		public static void IsTrue(bool condition) {
-			AreEqual(condition, true);
+			AreEqual(true, condition);
 		}
 	}
 }

@@ -42,5 +42,6 @@ echo FSC=%FSC%
 
 :: Compile Test App
 if not exist bin mkdir bin
-if not exist bin\test.exe %csc% /nologo /out:bin\test.exe test.cs
+if exist bin\test.exe del bin\test.exe
+%csc% /nologo /out:bin\test.exe test.cs
 bin\test.exe
