@@ -22,7 +22,7 @@ object Program {
     
     def main(args: Array[String]) {
       println("\nScala Tests:");
-      test(helloWorldTest, "HelloWorld()");
+      test(helloWorldTest, "helloWorld()");
       test(capitalizeEveryNthWordTest, "capitalizeEveryNthWord(...)");
       println("Done!");
     }

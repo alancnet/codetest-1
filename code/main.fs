@@ -13,7 +13,7 @@ module Assert =
 
 
 let helloWorldTest() = 
-    Assert.areEqual (HelloWorld()) "Hello World!"
+    Assert.areEqual (helloWorld()) "Hello World!"
 
 let capitalizeEveryNthWord() =
     let sentence = "Lorem ipsum dolor sit amet";
@@ -32,7 +32,7 @@ let test t name =
 [<EntryPoint>]
 let main argv =
     printfn "\nF# Tests:"
-    test helloWorldTest "HelloWorld()"
+    test helloWorldTest "helloWorld()"
     test capitalizeEveryNthWord "capitalizeEveryNthWord(...)"
     printfn "Done!"
     0

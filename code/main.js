@@ -26,7 +26,7 @@ function Program() {
 	
 	function main() {
 		console.log("\nJavaScript Tests:");
-		test(helloWorldTest, "HelloWorld()");
+		test(helloWorldTest, "helloWorld()");
 		test(capitalizeEveryNthWordTest, "capitalizeEveryNthWord(...)");
 		console.log("Done!");
 	}

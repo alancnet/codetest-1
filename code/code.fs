@@ -1,6 +1,6 @@
 ﻿module TestModule
 
-let HelloWorld() = 
+let helloWorld() = 
     failwith "Not Implemented"
 
 let capitalizeEveryNthWord sentence offset count = 
