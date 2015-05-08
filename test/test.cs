@@ -32,7 +32,7 @@ namespace test
             List<Result> results = new List<Result>();
             results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code\\code.scala code\\main.scala"));
             if (File.Exists("../bin/scala.jar"))
-                results.AddRange(Exec("..\\bin", "%SCALAEXE%", "scala.jar"));
+                results.AddRange(Exec("..\\bin", "%SCALAEXE%", "-cp scala.jar Program"));
             return results;
         }
         static IEnumerable<Result> JavaScript()
@@ -130,9 +130,25 @@ namespace test
             foreach (var file in Directory.GetFiles("../bin")) File.Delete(file);
         }
 
+		static bool IsWindows() {
+			switch (Environment.OSVersion.Platform) {
+				case PlatformID.Win32NT:
+				case PlatformID.Win32S:
+				case PlatformID.Win32Windows:
+				case PlatformID.WinCE:
+					return true;
+			}
+			return false;
+		}
 
         static IEnumerable<Result> Exec(string dir, string cmd, string args)
         {
+			if (!IsWindows ()) 
+			{
+				dir = dir.Replace ('\\', '/');
+				cmd = cmd.Replace ('\\', '/');
+				args = args.Replace ('\\', '/');
+			}
             List<Result> results = new List<Result>();
             var filename = Environment.ExpandEnvironmentVariables(cmd);
             if (File.Exists(filename))

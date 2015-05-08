@@ -6,10 +6,10 @@ object Program {
     def test(t: () => Unit, name:String) {
       try {
         t();
-        println(s"PASS:$name")
+        println("PASS:" + name)
       } catch {
         case e: Exception => 
-          println(s"FAIL:$name: ${e.getMessage}")
+          println("FAIL:" + name + ": " + e.getMessage)
       }
     }
     
@@ -23,7 +23,7 @@ object Program {
 object Assert {
   def areEqual[T](expected:T, actual:T) {
     if (expected != actual) {
-      throw new Exception(s"Expected '$expected' but got '$actual'.");
+      throw new Exception("Expected '" + expected + "' but got '" + actual + ".");
     }
   }
 }

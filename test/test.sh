@@ -34,6 +34,16 @@ echo SCALAC=$SCALAC
 echo CSC=$CSC
 echo FSC=$FSC
 
+export JAVAEXE=$JAVAEXE
+export SCALAEXE=$SCALAEXE
+export JSEXE=$JSEXE
+export MONOEXE=$MONOEXE
+export JAVAC=$JAVAC
+export SCALAC=$SCALAC
+export CSC=$CSC
+export FSC=$FSC
+
+
 ERRS=0
 
 if [ -z "$JAVAEXE" ]; then ERRS=$(expr $ERRS + 1) && echo Unable to find Java. Please make sure Java is installed.; fi
