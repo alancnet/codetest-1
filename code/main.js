@@ -1,11 +1,6 @@
 var code = require('../code.js');
-
+var tests = require('./tests.js');
 function Program() {
-	var assert;
-	
-	function helloWorldTest() {
-		assert.areEqual("Hello World!", code.helloWorld());
-	}
 	
 	function test(t, name) {
 		try {
@@ -18,14 +13,8 @@ function Program() {
 	
 	function main() {
 		console.log("\nJavaScript Tests:");
-		test(helloWorldTest, "helloWorld()");
+		test(tests.helloWorldTest, "helloWorld()");
 		console.log("Done!");
-	}
-	
-	assert = {
-		areEqual: function(expected, actual) {
-			if (expected !== actual) throw new Error(["Expected '", expected, "', but got '", actual, "."].join(''));
-		}
 	}
 	main();
 }
