@@ -1,17 +1,25 @@
 object Main {    
-    def test(t: () => Unit, name:String) {
+    def test(t: java.lang.reflect.Method) {
       try {
-        t();
-        println("PASS:" + name)
+        t.invoke(Tests);
+        println("PASS:" + t.getName)
       } catch {
         case e: Exception => 
-          println("FAIL:" + name + ": " + e.getMessage)
+          println("FAIL:" + t.getName + ": " + e.getCause.getMessage)
       }
     }
     
     def main(args: Array[String]) {
       println("\nScala Tests:");
-      test(Tests.helloWorldTest, "helloWorld()");
+      Tests
+        .getClass
+        .getMethods
+        .sortWith(_.getName < _.getName)
+        .filter(m=>m.getName.endsWith("Test"))
+        .map(m=>{
+          test(m);
+          0
+        });
       println("Done!");
     }
   }

@@ -1,15 +1,24 @@
 ﻿module Main
-let test t name = 
+open System.Reflection
+
+let test (m : MethodInfo) = 
     try
-        t()
-        printfn "PASS:%s" name
+        m.Invoke(null, null) |> ignore
+        printfn "PASS:%s" m.Name
     with
-        | ex -> printfn "FAIL:%s: %s" name ex.Message
+        | ex -> printfn "FAIL:%s: %s" m.Name ex.InnerException.Message
         
 
 [<EntryPoint>]
 let main argv =
     printfn "\nF# Tests:"
-    test Tests.helloWorldTest "helloWorld()"
+    let testsType = System.Reflection.Assembly.GetCallingAssembly().GetType("Tests")
+    let methods = 
+        testsType.GetMethods()
+        |> Array.sortBy(fun m -> m.Name)
+        |> Array.filter(fun m -> m.Name.EndsWith("Test"))
+        |> Array.iter(fun m -> 
+            test m
+        )
     printfn "Done!"
     0

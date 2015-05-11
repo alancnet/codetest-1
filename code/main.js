@@ -13,7 +13,12 @@ function Program() {
 	
 	function main() {
 		console.log("\nJavaScript Tests:");
-		test(tests.helloWorldTest, "helloWorld()");
+		var names = Object.getOwnPropertyNames(tests).sort();
+		names.forEach(function(name, i) {
+			if (/Test$/.test(name)) {
+				test(tests[name], name);
+			}
+		});
 		console.log("Done!");
 	}
 	main();
