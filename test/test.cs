@@ -14,7 +14,7 @@ namespace test
         static IEnumerable<Result> CSharp()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%CSC%", "/nologo /out:bin/csharp.exe code\\main.cs code\\code.cs"));
+            results.AddRange(Exec("..", "%CSC%", "/nologo /out:bin/csharp.exe code\\main.cs code.cs"));
             results.AddRange(Exec("..\\bin", "..\\bin\\csharp.exe", ""));
             return results;
         }
@@ -22,7 +22,7 @@ namespace test
         static IEnumerable<Result> FSharp()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code\\code.fs code\\main.fs"));
+            results.AddRange(Exec("..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code.fs code\\main.fs"));
             results.AddRange(Exec("..\\bin", "..\\bin\\fsharp.exe", ""));
             return results;
         }
@@ -30,7 +30,7 @@ namespace test
         static IEnumerable<Result> Scala()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code\\code.scala code\\main.scala"));
+            results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code.scala code\\main.scala"));
             if (File.Exists("../bin/scala.jar"))
                 results.AddRange(Exec("..\\bin", "%SCALAEXE%", "-cp scala.jar Program"));
             return results;

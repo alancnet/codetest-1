@@ -1,4 +1,4 @@
-var code = require('./code.js');
+var code = require('../code.js');
 
 function Program() {
 	var assert;
