@@ -1,9 +1,9 @@
 var assert = require('./assert.js');
 var code = require('../code.js');
 var tests = {
-	helloWorldTest: function() {
-		assert.areEqual("Hello World!", code.helloWorld());
-	},
+    helloWorldTest: function() {
+        assert.areEqual("Hello World!", code.helloWorld());
+    },
     capitalizeEveryNthWordTest: function() {
         var sentence = "Lorem ipsum dolor sit amet";
         assert.areEqual("Lorem Ipsum dolor Sit amet", code.capitalizeEveryNthWord(sentence, 0, 2));
@@ -12,4 +12,4 @@ var tests = {
     }
 };
 module.exports = tests;
-	
+
