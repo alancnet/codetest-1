@@ -127,20 +127,29 @@ namespace test
             return String.Join("-", mods);
         }
         static void Compiler() {
-            while (true) {
-                needsBuild.WaitOne();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Executing Test...");
+            try {
+                while (true) {
+                    needsBuild.WaitOne();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Executing Test...");
+                    Console.ResetColor();
+                    ClearBuild();
+                    var results = CollectMany(new Func<IEnumerable<Result>>[] {
+                        CSharp,
+                        FSharp,
+                        Scala,
+                        JavaScript
+                    });
+        
+                    PrintResults(results.Result);
+                }
+            } catch (Exception ex) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fatal Error: " + ex);
                 Console.ResetColor();
-                ClearBuild();
-                var results = CollectMany(new Func<IEnumerable<Result>>[] {
-                    CSharp,
-                    FSharp,
-                    Scala,
-                    JavaScript
-                });
-    
-                PrintResults(results.Result);
+                needsBuild.Set();
+                Thread.Sleep(1000);
+                Compiler();
             }
         }
         
