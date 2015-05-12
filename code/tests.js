@@ -4,6 +4,6 @@ var tests = {
 	helloWorldTest: function() {
 		assert.areEqual("Hello World!", code.helloWorld());
 	}
-}
+};
 module.exports = tests;
 	
