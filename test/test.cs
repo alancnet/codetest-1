@@ -64,7 +64,8 @@ namespace test
         static void Main(string[] args)
         {
             Task.Factory.StartNew(Compiler);
-            WatchForChanges();
+            WatchForChanges("../code", "*");
+            WatchForChanges("..", "code.*");
             while (true) {
                 var keyInfo = Console.ReadKey(true);
                 string combo = GetKeyCombo(keyInfo);
@@ -234,9 +235,9 @@ namespace test
             }
             return ret;
         }
-        static void WatchForChanges()
+        static void WatchForChanges(string path, string pattern)
         {
-            var watcher = new FileSystemWatcher("../code", "*");
+            var watcher = new FileSystemWatcher(path, pattern);
             watcher.Changed += watcher_Changed;
             watcher.Renamed += watcher_Changed;
             watcher.Created += watcher_Changed;

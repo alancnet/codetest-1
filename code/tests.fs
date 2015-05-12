@@ -1,7 +1,7 @@
 module Tests
 open Code;
 let helloWorldTest() = 
-    Assert.areEqual (helloWorld()) "Hello World!"
+    Assert.areEqual "Hello World!" (Code.helloWorld())
 let capitalizeEveryNthWordTest() =
     let sentence = "Lorem ipsum dolor sit amet";
     Assert.areEqual "Lorem Ipsum dolor Sit amet" (capitalizeEveryNthWord sentence 0 2)
