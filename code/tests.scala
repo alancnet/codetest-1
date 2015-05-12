@@ -1,6 +1,6 @@
 object Tests {
     def helloWorldTest() {
-        Assert.areEqual("Hello World!", TestModule.helloWorld());
+        Assert.areEqual("Hello World!", Code.helloWorld());
     }
     def capitalizeEveryNthWordTest() {
         def sentence = "Lorem ipsum dolor sit amet";
