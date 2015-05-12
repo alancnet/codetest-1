@@ -10,4 +10,9 @@ class Code {
 	public static string CapitalizeEveryNthWord(string sentence, int offset, int n) {
         throw new Exception("Not Implemented");
 	}
+    
+    // Determine if a number is prime
+    public static bool IsPrime(int n) {
+        throw new Exception("Not Implemented");
+    }
 }

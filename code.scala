@@ -8,4 +8,9 @@ object TestModule {
     def capitalizeEveryNthWord(sentence:String, offset:Integer, n:Integer) {
         throw new Exception("Not Implemented");
     }
+    
+    // Determine if a number is prime
+    def isPrime(n:Integer) : Boolean = {
+        throw new Exception("Not Implemented");
+    }
 }
