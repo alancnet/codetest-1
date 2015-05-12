@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.IO;
 using System.Threading;
 using System.Collections;
@@ -14,40 +15,118 @@ namespace test
         static IEnumerable<Result> CSharp()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%CSC%", "/nologo /out:bin/csharp.exe code\\main.cs code\\code.cs"));
-            results.AddRange(Exec("..\\bin", "..\\bin\\csharp.exe", ""));
+            if (EnableCSharp) 
+            {
+                results.AddRange(Exec("..", "%CSC%", "/nologo /out:bin/csharp.exe code.cs code\\assert.cs code\\tests.cs code\\main.cs"));
+                results.AddRange(Exec("..\\bin", "..\\bin\\csharp.exe", ""));
+            }
             return results;
         }
 
         static IEnumerable<Result> FSharp()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code\\code.fs code\\main.fs"));
-            results.AddRange(Exec("..\\bin", "..\\bin\\fsharp.exe", ""));
+            if (EnableFSharp) 
+            {
+                results.AddRange(Exec("..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code.fs code\\assert.fs code\\tests.fs code\\main.fs"));
+                results.AddRange(Exec("..\\bin", "..\\bin\\fsharp.exe", ""));
+            }
             return results;
         }
 
         static IEnumerable<Result> Scala()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code\\code.scala code\\main.scala"));
-            if (File.Exists("../bin/scala.jar"))
-                results.AddRange(Exec("..\\bin", "%SCALAEXE%", "-cp scala.jar Program"));
+            if (EnableScala)
+            {
+                results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code.scala code\\assert.scala code\\tests.scala code\\main.scala"));
+                if (File.Exists("../bin/scala.jar"))
+                    results.AddRange(Exec("..\\bin", "%SCALAEXE%", "-cp scala.jar Main"));
+            }
             return results;
         }
         static IEnumerable<Result> JavaScript()
         {
             List<Result> results = new List<Result>();
-            results.AddRange(Exec("..", "%JSEXE%", "code\\main.js"));
+            if (EnableJavaScript)
+            {
+                results.AddRange(Exec("..", "%JSEXE%", "code\\main.js"));
+            }
             return results;
         }
 
         static AutoResetEvent needsBuild = new AutoResetEvent(true);
+        static bool EnableCSharp = true;
+        static bool EnableFSharp = true;
+        static bool EnableScala = true;
+        static bool EnableJavaScript = true;
+        
         static void Main(string[] args)
         {
+            Task.Factory.StartNew(Compiler);
             WatchForChanges();
-            while (true)
-            {
+            while (true) {
+                var keyInfo = Console.ReadKey(true);
+                string combo = GetKeyCombo(keyInfo);
+                
+                switch (combo) {
+                    case "D1": 
+                        EnableCSharp = !EnableCSharp;
+                        break;
+                    case "D2": 
+                        EnableFSharp = !EnableFSharp;
+                        break;
+                    case "D3": 
+                        EnableScala = !EnableScala;
+                        break;
+                    case "D4": 
+                        EnableJavaScript = !EnableJavaScript;
+                        break;
+                    case "Shift-D1":
+                        EnableCSharp = true;
+                        EnableFSharp = false;
+                        EnableScala = false;
+                        EnableJavaScript = false;
+                        break;
+                    case "Shift-D2":
+                        EnableCSharp = false;
+                        EnableFSharp = true;
+                        EnableScala = false;
+                        EnableJavaScript = false;
+                        break;
+                    case "Shift-D3":
+                        EnableCSharp = false;
+                        EnableFSharp = false;
+                        EnableScala = true;
+                        EnableJavaScript = false;
+                        break;
+                    case "Shift-D4":
+                        EnableCSharp = false;
+                        EnableFSharp = false;
+                        EnableScala = false;
+                        EnableJavaScript = true;
+                        break;
+                    case "F5":
+                        break;
+                    default:
+                        continue;
+                        
+                }
+                PrintMenu();
+                needsBuild.Set();
+            }
+        }
+        static string GetKeyCombo(ConsoleKeyInfo info) 
+        {
+            List<string> mods = new List<string>();
+            if (info.Modifiers.HasFlag(ConsoleModifiers.Control)) mods.Add("Ctrl");
+            if (info.Modifiers.HasFlag(ConsoleModifiers.Alt)) mods.Add("Alt");
+            if (info.Modifiers.HasFlag(ConsoleModifiers.Shift)) mods.Add("Shift");
+            mods.Add(info.Key.ToString());
+            return String.Join("-", mods);
+        }
+        static void Compiler() {
+            while (true) {
                 needsBuild.WaitOne();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Executing Test...");
@@ -59,13 +138,54 @@ namespace test
                     Scala,
                     JavaScript
                 });
-
+    
                 PrintResults(results.Result);
             }
+        }
+        
+        static void PrintMenuItem(string key, string name, bool? state) {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(key);
+            Console.ResetColor();
+            Console.Write("-");
+            Console.Write(name);
+            if (state.HasValue) {
+                Console.Write(" [");
+                switch (state.Value) {
+                    case false:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("Off");
+                        break;
+                    case true:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("On");
+                        break;
+                }
+                Console.ResetColor();
+                Console.Write("]");
+            }
+            Console.Write("; ");
+        }
+        
+        static void PrintMenu() {
+            var x = Console.CursorLeft;
+            var y = Math.Max(2, Console.CursorTop);
+            Console.CursorLeft = 0;
+            Console.CursorTop = 0;
+            PrintMenuItem("1", "CSharp", EnableCSharp);
+            PrintMenuItem("2", "FSharp", EnableFSharp);
+            PrintMenuItem("3", "Scala", EnableScala);
+            PrintMenuItem("4", "JavaScript", EnableJavaScript);
+            PrintMenuItem("F5", "Rebuild", null);
+            Console.WriteLine("".PadRight(Console.BufferWidth));
+            Console.CursorLeft = x;
+            Console.CursorTop = y;
+
         }
         static void PrintResults(IEnumerable<Result> results)
         {
             Console.Clear();
+            PrintMenu();
             foreach (var result in results)
             {
                 switch (result.Type)
