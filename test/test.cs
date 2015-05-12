@@ -251,32 +251,32 @@ namespace test
             foreach (var file in Directory.GetFiles("../bin")) File.Delete(file);
         }
 
-		static bool IsWindows() {
-			switch (Environment.OSVersion.Platform) {
-				case PlatformID.Win32NT:
-				case PlatformID.Win32S:
-				case PlatformID.Win32Windows:
-				case PlatformID.WinCE:
-					return true;
-			}
-			return false;
-		}
+        static bool IsWindows() {
+            switch (Environment.OSVersion.Platform) {
+                case PlatformID.Win32NT:
+                case PlatformID.Win32S:
+                case PlatformID.Win32Windows:
+                case PlatformID.WinCE:
+                    return true;
+            }
+            return false;
+        }
 
         static IEnumerable<Result> Exec(string dir, string cmd, string args)
         {
-			if (!IsWindows ()) 
-			{
-				dir = dir.Replace ('\\', '/');
-				cmd = cmd.Replace ('\\', '/');
-				args = args.Replace ('\\', '/');
-			}
+            if (!IsWindows ()) 
+            {
+                dir = dir.Replace ('\\', '/');
+                cmd = cmd.Replace ('\\', '/');
+                args = args.Replace ('\\', '/');
+            }
             List<Result> results = new List<Result>();
             var filename = Environment.ExpandEnvironmentVariables(cmd);
             if (File.Exists(filename))
             {
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
-					WorkingDirectory = dir,
+                    WorkingDirectory = dir,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardInput = true,
