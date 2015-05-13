@@ -13,4 +13,15 @@ object Code {
     def isPrime(n:Integer) : Boolean = {
         throw new Exception("Not Implemented");
     }
+    
+    // Calculate the golden ratio.
+    // Given two numbers, a and b, the ratio is a / b. 
+    // Let c = a + b, then the ratio b / c is closer to the golden ratio.
+    // Let d = b + c, then the ratio c / d is closer to the golden ratio. 
+    // Let e = c + d, then the ratio d / e is closer to the golden ratio.
+    // If you continue this process, the result will trend towards the golden ratio.
+    def goldenRatio(a:Double, b:Double) : Double = {
+        throw new Exception("Not Implemented");
+    }
+
 }

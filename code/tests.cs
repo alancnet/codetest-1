@@ -18,4 +18,8 @@ static class Tests {
         Assert.IsFalse(Code.IsPrime(87), "IsPrime(87) should be false.");
         Assert.IsTrue(Code.IsPrime(97), "IsPrime(97) should be true.");
     }
+    public static void GoldenRatioTest() {
+        Assert.IsInRange(1.61800, 1.61806, Code.GoldenRatio(1.0, 1.0));
+        Assert.IsInRange(1.61800, 1.61806, Code.GoldenRatio(100, 6));
+    }
 }

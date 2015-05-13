@@ -14,3 +14,6 @@ let isPrimeTest() =
     Assert.isTrue (isPrime 5) "IsPrime(5) should be true."
     Assert.isFalse (isPrime 87) "IsPrime(87) should be false."
     Assert.isTrue (isPrime 97) "IsPrime(97) should be true."
+let goldenRatioTest() =
+    Assert.isInRange 1.61800 1.61806 (goldenRatio 1.0 1.0) null
+    Assert.isInRange 1.61800 1.61806 (goldenRatio 100.0 6.0) null

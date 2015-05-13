@@ -17,4 +17,9 @@ object Assert {
             throw new Exception(failText ?? "Expected false.");
         }
     }
+    def isInRange(least:Double, most:Double, actual:Double, failText:String = null) {
+        if (actual < least || actual > most) {
+            throw new Exception(failText ?? "Expected " + least + " to " + most + ", but got " + actual + ".");
+        }
+    }
 }

@@ -17,6 +17,10 @@ var tests = {
         assert.IsTrue(code.isPrime(5), "IsPrime(5) should be true.");
         assert.IsFalse(code.isPrime(87), "IsPrime(87) should be false.");
         assert.IsTrue(code.isPrime(97), "IsPrime(97) should be true.");
+    },
+    goldenRatioTest: function() {
+        assert.isInRange(1.61800, 1,61806, code.goldenRatio(1.0, 1.0));
+        assert.isInRange(1.61800, 1,61806, code.goldenRatio(100, 6));
     }
 };
 module.exports = tests;
