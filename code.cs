@@ -31,4 +31,11 @@ class Code {
     public static int Fibionacci(int n) {
         throw new Exception("Not Implemented");
     }
+    
+    // Give the square root of a number
+    // Using a binary search algorithm, search for the square root of a given number.
+    // Do not use the built-in square root function.
+    public static double SquareRoot(double n) {
+        throw new Exception("Not Implemented");
+    }
 }

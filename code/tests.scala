@@ -27,5 +27,9 @@ object Tests {
         Assert.areEqual(2, Code.fibionacci(3));
         Assert.areEqual(6765, Code.fibionacci(20));
     }
+    def squareRootTest() {
+        Assert.areEqual(5.0, Code.squareRoot(25.0));
+        Assert.isInRange(1.414, 1.4144, Code.squareRoot(2.0));
+    }
 
 }

@@ -23,3 +23,6 @@ let fibionacciTest() =
     Assert.areEqual 1 (fibionacci 2) null
     Assert.areEqual 2 (fibionacci 3) null
     Assert.areEqual 6765 (fibionacci 20) null
+let squareRootTest() =
+    Assert.areEqual 5.0 (Code.squareRoot 25.0) null
+    Assert.isInRange 1.414 1.4144 (Code.squareRoot 2.0) null

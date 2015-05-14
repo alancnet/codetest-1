@@ -29,4 +29,8 @@ static class Tests {
         Assert.AreEqual(2, Code.Fibionacci(3));
         Assert.AreEqual(6765, Code.Fibionacci(20));
     }
+    public static void SquareRootTest() {
+        Assert.AreEqual(5.0, Code.SquareRoot(25.0));
+        Assert.IsInRange(1.414, 1.4144, Code.SquareRoot(2.0));
+    }
 }

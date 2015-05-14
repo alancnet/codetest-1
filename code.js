@@ -28,7 +28,13 @@ var code = {
     // Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
     fibionacci: function(n) {
         throw new Error("Not Implemented");
+    },
+
+    // Give the square root of a number
+    // Using a binary search algorithm, search for the square root of a given number.
+    // Do not use the built-in square root function.
+    squareRoot: function(n) {
+        throw new Error("Not Implemented");
     }
-    
-}
+};
 module.exports = code;

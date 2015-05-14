@@ -29,4 +29,11 @@ object Code {
     def fibionacci(n:Integer) : Integer = {
         throw new Exception("Not Implemented");
     }
+    
+    // Give the square root of a number
+    // Using a binary search algorithm, search for the square root of a given number.
+    // Do not use the built-in square root function.
+    def squareRoot(n:Double) : Double = {
+        throw new Exception("Not Implemented");
+    }
 }

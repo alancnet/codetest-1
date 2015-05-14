@@ -24,3 +24,10 @@ let goldenRatio a b =
 // Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
 let fibionacci n =
     failwith "Not Implemented"
+
+// Give the square root of a number
+// Using a binary search algorithm, search for the square root of a given number.
+// Do not use the built-in square root function.
+let squareRoot n =
+    failwith "Not Implemented"
+    
