@@ -10,6 +10,11 @@ var assert = {
     isFalse: function(condition, failText) {
         if (condition)
             throw new Error(failText || "Expected false.")
+    },
+    isInRange: function(least, most, actual, failText) {
+        if (actual < least || actual > most) {
+            throw new Error(failText || "Expected " + least + " to " + most + ", but got " + actual + ".");
+        }
     }
 }
 

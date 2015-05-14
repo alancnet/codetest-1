@@ -15,4 +15,9 @@ static class Assert {
         if (condition)
             throw new Exception(failText ?? "Expected false.");
     }
+    public static void IsInRange(double least, double most, double actual, string failText = null) {
+        if (actual < least || actual > most) {
+            throw new Exception(String.Format(failText ?? "Expected {0} to {1}, got {2}.", least, most, actual));
+        }
+    }
 }
