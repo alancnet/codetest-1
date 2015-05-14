@@ -24,4 +24,9 @@ object Code {
         throw new Exception("Not Implemented");
     }
 
+    // Give the nth Fibionacci number
+    // Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
+    def fibionacci(n:Integer) : Integer = {
+        throw new Exception("Not Implemented");
+    }
 }

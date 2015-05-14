@@ -24,5 +24,11 @@ class Code {
     // If you continue this process, the result will trend towards the golden ratio.
     public static double GoldenRatio(double a, double b) {
         throw new Exception("Not Implemented");
-    }    
+    }
+    
+    // Give the nth Fibionacci number
+    // Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
+    public static int Fibionacci(int n) {
+        throw new Exception("Not Implemented");
+    }
 }

@@ -17,8 +17,8 @@ namespace test
             List<Result> results = new List<Result>();
             if (EnableCSharp) 
             {
-                results.AddRange(Exec("..", "%CSC%", "/nologo /out:bin/csharp.exe code.cs code\\assert.cs code\\tests.cs code\\main.cs"));
-                results.AddRange(Exec("..\\bin", "..\\bin\\csharp.exe", ""));
+                results.AddRange(Exec(null, "..", "%CSC%", "/nologo /out:bin/csharp.exe code.cs code\\assert.cs code\\tests.cs code\\main.cs"));
+                results.AddRange(Exec(5000, "..\\bin", "..\\bin\\csharp.exe", ""));
             }
             return results;
         }
@@ -28,8 +28,8 @@ namespace test
             List<Result> results = new List<Result>();
             if (EnableFSharp) 
             {
-                results.AddRange(Exec("..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code.fs code\\assert.fs code\\tests.fs code\\main.fs"));
-                results.AddRange(Exec("..\\bin", "..\\bin\\fsharp.exe", ""));
+                results.AddRange(Exec(null, "..", "%FSC%", "/nologo --target:exe /out:bin/fsharp.exe code.fs code\\assert.fs code\\tests.fs code\\main.fs"));
+                results.AddRange(Exec(5000, "..\\bin", "..\\bin\\fsharp.exe", ""));
             }
             return results;
         }
@@ -39,9 +39,9 @@ namespace test
             List<Result> results = new List<Result>();
             if (EnableScala)
             {
-                results.AddRange(Exec("..", "%SCALAC%", "-nowarn -d bin/scala.jar code.scala code\\assert.scala code\\tests.scala code\\main.scala"));
+                results.AddRange(Exec(null, "..", "%SCALAC%", "-nowarn -d bin/scala.jar code.scala code\\assert.scala code\\tests.scala code\\main.scala"));
                 if (File.Exists("../bin/scala.jar"))
-                    results.AddRange(Exec("..\\bin", "%SCALAEXE%", "-cp scala.jar Main"));
+                    results.AddRange(Exec(5000, "..\\bin", "%SCALAEXE%", "-cp scala.jar Main"));
             }
             return results;
         }
@@ -50,7 +50,7 @@ namespace test
             List<Result> results = new List<Result>();
             if (EnableJavaScript)
             {
-                results.AddRange(Exec("..", "%JSEXE%", "code\\main.js"));
+                results.AddRange(Exec(5000, "..", "%JSEXE%", "code\\main.js"));
             }
             return results;
         }
@@ -143,10 +143,7 @@ namespace test
         
                     PrintResults(results.Result);
                 }
-            } catch (Exception ex) {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Fatal Error: " + ex);
-                Console.ResetColor();
+            } catch {
                 needsBuild.Set();
                 Thread.Sleep(1000);
                 Compiler();
@@ -271,7 +268,7 @@ namespace test
             return false;
         }
 
-        static IEnumerable<Result> Exec(string dir, string cmd, string args)
+        static IEnumerable<Result> Exec(int? timeout, string dir, string cmd, string args)
         {
             if (!IsWindows ()) 
             {
@@ -351,7 +348,11 @@ namespace test
                 proc.BeginOutputReadLine();
                 proc.BeginErrorReadLine();
 
-                proc.WaitForExit(5000);
+                if (timeout.HasValue) {
+                    proc.WaitForExit(timeout.Value);
+                } else {
+                    proc.WaitForExit();
+                }
 
                 if (!proc.HasExited)
                 {

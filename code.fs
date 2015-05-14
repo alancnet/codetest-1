@@ -19,3 +19,8 @@ let isPrime n =
 // If you continue this process, the result will trend towards the golden ratio.
 let goldenRatio a b = 
     failwith "Not Implemented"
+
+// Give the nth Fibionacci number
+// Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
+let fibionacci n =
+    failwith "Not Implemented"

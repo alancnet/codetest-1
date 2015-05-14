@@ -22,4 +22,11 @@ static class Tests {
         Assert.IsInRange(1.61800, 1.61806, Code.GoldenRatio(1.0, 1.0));
         Assert.IsInRange(1.61800, 1.61806, Code.GoldenRatio(100, 6));
     }
+    public static void FibionacciTest() {
+        Assert.AreEqual(0, Code.Fibionacci(0));
+        Assert.AreEqual(1, Code.Fibionacci(1));
+        Assert.AreEqual(1, Code.Fibionacci(2));
+        Assert.AreEqual(2, Code.Fibionacci(3));
+        Assert.AreEqual(6765, Code.Fibionacci(20));
+    }
 }

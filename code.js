@@ -22,6 +22,13 @@ var code = {
     // If you continue this process, the result will trend towards the golden ratio.
     goldenRatio: function(a, b) {
         throw new Error("Not Implemented");
+    },
+
+    // Give the nth Fibionacci number
+    // Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
+    fibionacci: function(n) {
+        throw new Error("Not Implemented");
     }
+    
 }
 module.exports = code;
