@@ -4,7 +4,7 @@ object Code {
         throw new Exception("Not Implemented");
     }
 
-    // Take a single-spaced <sentence>, and capitalize every <n> word starting with <offset>.
+    // Take a single-spaced <sentence>, and capitalize every <n>th word starting with <offset>.
     def capitalizeEveryNthWord(sentence:String, offset:Integer, n:Integer) {
         throw new Exception("Not Implemented");
     }
@@ -15,18 +15,18 @@ object Code {
     }
     
     // Calculate the golden ratio.
-    // Given two numbers, a and b, the ratio is a / b. 
-    // Let c = a + b, then the ratio b / c is closer to the golden ratio.
-    // Let d = b + c, then the ratio c / d is closer to the golden ratio. 
-    // Let e = c + d, then the ratio d / e is closer to the golden ratio.
+    // Given two numbers, a and b, the ratio is b / a. 
+    // Let c = a + b, then the ratio c / b is closer to the golden ratio.
+    // Let d = b + c, then the ratio d / c is closer to the golden ratio. 
+    // Let e = c + d, then the ratio e / d is closer to the golden ratio.
     // If you continue this process, the result will trend towards the golden ratio.
     def goldenRatio(a:Double, b:Double) : Double = {
         throw new Exception("Not Implemented");
     }
 
-    // Give the nth Fibionacci number
-    // Starting with 1 and 1, a Fibionacci number is the sum of the previous two.
-    def fibionacci(n:Integer) : Integer = {
+    // Give the nth Fibonacci number
+    // Starting with 0, 1, 1, 2, ... a Fibonacci number is the sum of the previous two.
+    def fibonacci(n:Integer) : Integer = {
         throw new Exception("Not Implemented");
     }
     
