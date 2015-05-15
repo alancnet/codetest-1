@@ -15,7 +15,7 @@ object Code {
     }
     
     // Calculate the golden ratio.
-    // Given two numbers, a and b, the ratio is b / a. 
+    // Given two numbers a and b with a > b > 0, the ratio is b / a.
     // Let c = a + b, then the ratio c / b is closer to the golden ratio.
     // Let d = b + c, then the ratio d / c is closer to the golden ratio. 
     // Let e = c + d, then the ratio e / d is closer to the golden ratio.
