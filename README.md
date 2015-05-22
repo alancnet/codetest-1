@@ -3,7 +3,7 @@
 ### Windows
 
 - `git clone https://github.com/alancnet/codetest-1` to clone this repository
-- Or click [![](http://i.imgur.com/Su6om9f.png)](archive/master.zip), and unzip to a directory.
+- Or click [![](http://i.imgur.com/Su6om9f.png)](https://github.com/alancnet/codetest-1/archive/master.zip), and unzip to a directory.
 - Using Windows Explorer, browse to `codetest-1\test`, and double click on `test.cmd`
 
 ![](http://i.imgur.com/LFlkioh.png)
