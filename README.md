@@ -6,10 +6,10 @@
 - Using Windows Explorer, browse to `codetest-1\test`, and double click on `test.cmd`
 - Run test/test.cmd from Command Prompt 
 
-![](//i.imgur.com/eDshSel.png)
+![](http://i.imgur.com/eDshSel.png)
 - Open and edit source code from the 'code' directory.
 
-![](//i.imgur.com/4CBdwDz.png)
+![](http://i.imgur.com/4CBdwDz.png)
 - Test will re-execute on any code change.
 - Press Ctrl-C to exit test monitor.
 
