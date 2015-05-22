@@ -3,14 +3,16 @@
 ### Windows
 
 - `git clone https://github.com/alancnet/codetest-1` to clone this repository
+- Or click [![](http://i.imgur.com/Su6om9f.png)](archive/master.zip), and unzip to a directory.
 - Using Windows Explorer, browse to `codetest-1\test`, and double click on `test.cmd`
-- Run test/test.cmd from Command Prompt 
 
-![](http://i.imgur.com/eDshSel.png)
-- Open and edit source code from the 'code' directory.
+![](http://i.imgur.com/LFlkioh.png)
+- Open and edit source code from the 'code' directory. Use any code editor you are comfortable with.
 
 ![](http://i.imgur.com/4CBdwDz.png)
 - Test will re-execute on any code change.
+
+![](http://i.imgur.com/fvPU3IQ.png)
 - Press Ctrl-C to exit test monitor.
 
 ### Mac/Linux
