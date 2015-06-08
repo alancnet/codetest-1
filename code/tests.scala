@@ -20,12 +20,12 @@ object Tests {
         Assert.isInRange(1.61800, 1.61806, Code.goldenRatio(1.0, 1.0));
         Assert.isInRange(1.61800, 1.61806, Code.goldenRatio(100, 6));
     }
-    def fibionacciTest() {
-        Assert.areEqual(0, Code.fibionacci(0));
-        Assert.areEqual(1, Code.fibionacci(1));
-        Assert.areEqual(1, Code.fibionacci(2));
-        Assert.areEqual(2, Code.fibionacci(3));
-        Assert.areEqual(6765, Code.fibionacci(20));
+    def fibonacciTest() {
+        Assert.areEqual(0, Code.fibonacci(0));
+        Assert.areEqual(1, Code.fibonacci(1));
+        Assert.areEqual(1, Code.fibonacci(2));
+        Assert.areEqual(2, Code.fibonacci(3));
+        Assert.areEqual(6765, Code.fibonacci(20));
     }
     def squareRootTest() {
         Assert.areEqual(5.0, Code.squareRoot(25.0));
