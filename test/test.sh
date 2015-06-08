@@ -14,7 +14,7 @@ if [ -z "$JSEXE" ]; then JSEXE=$(which node); fi
 if [ -z "$MONOEXE" ]; then MONOEXE=$(which mono); fi
 
 # Find Java Compiler
-if [ -z "$JAVAC" ]; then JAVAEX=$(which javac); fi
+if [ -z "$JAVAC" ]; then JAVAC=$(which javac); fi
 
 # Find Scala Compiler
 if [ -z "$SCALAC" ]; then SCALAC=$(which scalac); fi
