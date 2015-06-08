@@ -55,11 +55,23 @@ namespace test
             return results;
         }
 
+        static IEnumerable<Result> Java()
+        {
+            List<Result> results = new List<Result>();
+            if (EnableJava)
+            {
+                results.AddRange(Exec(5000, "..", "%JAVAC%", "-nowarn -d bin Code.java code\\Assert.java code\\Tests.java code\\Main.java"));
+                results.AddRange(Exec(5000, "..\\bin", "%JAVAEXE%", "Main"));
+            }
+            return results;
+        }
+
         static AutoResetEvent needsBuild = new AutoResetEvent(true);
         static bool EnableCSharp = true;
         static bool EnableFSharp = true;
         static bool EnableScala = true;
         static bool EnableJavaScript = true;
+        static bool EnableJava = true;
         
         static void Main(string[] args)
         {
@@ -83,29 +95,43 @@ namespace test
                     case "D4": 
                         EnableJavaScript = !EnableJavaScript;
                         break;
+                    case "D5":
+                        EnableJava = !EnableJava;
+                        break;
                     case "Shift-D1":
                         EnableCSharp = true;
                         EnableFSharp = false;
                         EnableScala = false;
                         EnableJavaScript = false;
+                        EnableJava = false;
                         break;
                     case "Shift-D2":
                         EnableCSharp = false;
                         EnableFSharp = true;
                         EnableScala = false;
                         EnableJavaScript = false;
+                        EnableJava = false;
                         break;
                     case "Shift-D3":
                         EnableCSharp = false;
                         EnableFSharp = false;
                         EnableScala = true;
                         EnableJavaScript = false;
+                        EnableJava = false;
                         break;
                     case "Shift-D4":
                         EnableCSharp = false;
                         EnableFSharp = false;
                         EnableScala = false;
                         EnableJavaScript = true;
+                        EnableJava = false;
+                        break;
+                    case "Shift-D5":
+                        EnableCSharp = false;
+                        EnableFSharp = false;
+                        EnableScala = false;
+                        EnableJavaScript = false;
+                        EnableJava = true;
                         break;
                     case "F5":
                         break;
@@ -138,7 +164,8 @@ namespace test
                         CSharp,
                         FSharp,
                         Scala,
-                        JavaScript
+                        JavaScript,
+                        Java
                     });
         
                     PrintResults(results.Result);
@@ -183,6 +210,7 @@ namespace test
             PrintMenuItem("2", "FSharp", EnableFSharp);
             PrintMenuItem("3", "Scala", EnableScala);
             PrintMenuItem("4", "JavaScript", EnableJavaScript);
+            PrintMenuItem("5", "Java", EnableJava);
             PrintMenuItem("F5", "Rebuild", null);
             Console.WriteLine("".PadRight(Console.BufferWidth));
             Console.CursorLeft = x;

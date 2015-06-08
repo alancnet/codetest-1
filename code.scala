@@ -5,7 +5,7 @@ object Code {
     }
 
     // Take a single-spaced <sentence>, and capitalize every <n> word starting with <offset>.
-    def capitalizeEveryNthWord(sentence:String, offset:Integer, n:Integer) {
+    def capitalizeEveryNthWord(sentence:String, offset:Integer, n:Integer) : String = {
         throw new Exception("Not Implemented");
     }
     
