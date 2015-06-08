@@ -22,9 +22,10 @@
     - Mac: 
         - Install git
             - Run `git` from Terminal command line, and if it's not installed, you should be prompted to install Xcode command line tools
-        - Install Java
+        - Install Java (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+        - Install Mono (http://www.mono-project.com/download/)
         - Install brew (http://brew.sh)
-        - In Terminal, run `brew install scala fsharp node`
+        - In Terminal, run `brew install scala node`
     - Ubuntu: `sudo apt-get install git scala mono-devel fsharp nodejs npm openjdk-7-jdk`
 - Clone this repository: `git clone https://github.com/alancnet/codetest-1`
 - Run the test script
