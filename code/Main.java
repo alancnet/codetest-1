@@ -8,7 +8,7 @@ public class Main {
             System.out.println("PASS:" + t.getName());
         }
         catch (Exception e) {
-                System.out.println("FAIL:" + t.getName() + ": " + e.getCause().getMessage());
+            System.out.println("FAIL:" + t.getName() + ": " + (e.getCause().getMessage() != null ? e.getCause().getMessage() : e.getCause()));
         }
     }
     
