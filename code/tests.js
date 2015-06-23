@@ -19,6 +19,10 @@ var tests = {
         assert.isTrue(code.isPrime(97), "IsPrime(97) should be true.");
     },
     goldenRatioTest: function() {
+        // you had a syntax error here
+        // you had 1,61806 instead of 1.61806
+        // so your range was getting 4 params
+        // instead of 3 and failing
         assert.isInRange(1.61800, 1.61806, code.goldenRatio(1.0, 1.0));
         assert.isInRange(1.61800, 1.61806, code.goldenRatio(100, 6));
     },
@@ -30,8 +34,10 @@ var tests = {
         assert.areEqual(6765, code.fibonacci(20));
     },
     squareRootTest: function() {
-        assert.AreEqual(5.0, code.squareRoot(25.0));
-        assert.IsInRange(1.414, 1.4144, code.squareRoot(2.0));
+        // another mistake!  AreEqual -> areEqual
+        // another mistake!  IsInRange -> isInRange
+        assert.areEqual(5.0, code.squareRoot(25.0));
+        assert.isInRange(1.414, 1.4144, code.squareRoot(2.0));
     }
 
 };
