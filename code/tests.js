@@ -19,8 +19,8 @@ var tests = {
         assert.isTrue(code.isPrime(97), "IsPrime(97) should be true.");
     },
     goldenRatioTest: function() {
-        assert.isInRange(1.61800, 1,61806, code.goldenRatio(1.0, 1.0));
-        assert.isInRange(1.61800, 1,61806, code.goldenRatio(100, 6));
+        assert.isInRange(1.61800, 1.61806, code.goldenRatio(1.0, 1.0));
+        assert.isInRange(1.61800, 1.61806, code.goldenRatio(100, 6));
     },
     fibonacciTest: function() {
         assert.areEqual(0, code.fibonacci(0));
